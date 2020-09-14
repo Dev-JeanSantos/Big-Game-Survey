@@ -27,10 +27,12 @@ public class Game implements Serializable{
 	private String title;	
 	private Platform platform;
 	
+
 	@ManyToOne
 	@JoinColumn(name = "genre_id")
 	private Genre genre;
 	
+
 	@OneToMany(mappedBy = "game")
 	private List<Record> records = new ArrayList<>();
 	
@@ -54,11 +56,11 @@ public class Game implements Serializable{
 		this.id = id;
 	}
 
-	public String getName() {
+	public String getTitle() {
 		return title;
 	}
 
-	public void setName(String title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
 
