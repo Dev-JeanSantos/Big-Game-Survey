@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { formatDate } from './helpers';
+import Pagination from './Pagination';
 import './styles.css';
 import { RecordsResponse } from './types';
-import { formatDate } from './helpers';
-import Pagination from './Pagination/index'
-import {Link} from 'react-router-dom'
+import Filters from '../../Components/Filters'
 
 const BASE_URL = 'http://localhost:8080'
 
 const Records = () => {
 
-    const [ recordsResponse, setRecordsResponse] = useState <RecordsResponse>();
-    const [ activePage, setActivePage] = useState(0);
+    const [recordsResponse, setRecordsResponse] = useState<RecordsResponse>();
+    const [activePage, setActivePage] = useState(0);
 
-    useEffect (() => {
+    useEffect(() => {
 
         axios.get(`${BASE_URL}/records?linesPerPage=12&page=${activePage}`)
-        .then(response => setRecordsResponse (response.data));        
+            .then(response => setRecordsResponse(response.data));
 
     }, [activePage]);
 
@@ -26,14 +26,9 @@ const Records = () => {
 
     return (
         <div className="page-container">
-            <div className="filters-container records-actions">
 
-                <Link to="/charts"></Link>
-                <button className="action-filters">
-                    VER GRÁFICOS
-                </button>
-
-            </div>
+            <Filters link="/charts" linkText= "VER GRÁFICO"/>
+           
             <table className="records-table" cellPadding="0" cellSpacing="0">
                 <thead>
                     <tr>
@@ -46,27 +41,27 @@ const Records = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    
-                    {recordsResponse?.content.map(record =>(
+
+                    {recordsResponse?.content.map(record => (
                         <tr key={record.id}>
                             <td>{formatDate(record.moment)}</td>
                             <td>{record.name}</td>
                             <td>{record.age}</td>
                             <td className="text-secondary">{record.gamePlataform}</td>
                             <td>{record.genreName}</td>
-                            <td className= "text-primary">{record.gameTitle}</td>
+                            <td className="text-primary">{record.gameTitle}</td>
                         </tr>
                     ))}
-                
+
                 </tbody>
             </table>
             <Pagination
-             activepage= {activePage}
-             goToPage= {handlerPageChange}
-             totalPages={recordsResponse?.totalPages}
+                activepage={activePage}
+                goToPage={handlerPageChange}
+                totalPages={recordsResponse?.totalPages}
 
-             
-             />
+
+            />
         </div>
     );
 
@@ -74,7 +69,7 @@ const Records = () => {
 
 
 
-    export default Records;
+export default Records;
 
 
 
