@@ -4,6 +4,7 @@ INSERT INTO tb_genre (name) VALUES ('RPG');
 INSERT INTO tb_genre (name) VALUES ('Battle Royale');
 
 INSERT INTO tb_game (title, platform, genre_id) VALUES ('The Witcher 3', 2, 3);
+INSERT INTO tb_game (title, platform, genre_id) VALUES ('AMONG US', 0, 3);
 INSERT INTO tb_game (title, platform, genre_id) VALUES ('League of Legends', 0, 2);
 INSERT INTO tb_game (title, platform, genre_id) VALUES ('CS GO', 0, 1);
 INSERT INTO tb_game (title, platform, genre_id) VALUES ('Cyberpunk 2077', 0, 3);
