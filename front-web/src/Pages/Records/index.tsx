@@ -6,7 +6,7 @@ import './styles.css';
 import { RecordsResponse } from './types';
 import Filters from '../../Components/Filters'
 
-const BASE_URL = 'http://localhost:8080'
+const BASE_URL = 'https://sds1-jeansantos.herokuapp.com';
 
 const Records = () => {
 
